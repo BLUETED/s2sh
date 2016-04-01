@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean class="com.itheima12.s2sh.dao.impl.PersonDaoImpl" id="personDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean class="com.itheima12.s2sh.service.impl.PersonServiceImpl" id="personService">
+        <property name="personDao" ref="personDao"/>
+    </bean>
+    <!--一代能够注意action是多利的-->
+    <bean class="com.itheima12.s2sh.action.PersonAction " id="personAction" scope="prototype">
+        <property name="personService" ref="personService"/>
+    </bean>
+
+</beans>
